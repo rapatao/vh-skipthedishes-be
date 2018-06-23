@@ -6,6 +6,7 @@ import com.vanchack.challange.skipthedishes.services.restaurant.exception.Restau
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.util.Optional;
 
 @Service
@@ -26,6 +27,8 @@ public class RestaurantService {
         }
 
         restaurant.setId(null);
+        restaurant.setDateSign(Instant.now());
+
         return restaurantRepository.save(restaurant);
     }
 
@@ -38,6 +41,8 @@ public class RestaurantService {
                 && !byId.get().getId().equals(restaurant.getId())) {
             throw new DuplicatedRestaurantDocumentException();
         }
+
+        restaurant.setDateSign(byId.get().getDateSign());
 
         return restaurantRepository.save(restaurant);
     }

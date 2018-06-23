@@ -5,6 +5,8 @@ import com.vanchack.challange.skipthedishes.services.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/users")
 @RequiredArgsConstructor
@@ -13,8 +15,8 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping
-    public Iterable<User> allUsers() {
-        return userService.findAll();
+    public List<User> allUsers() {
+        return (List<User>) userService.findAll();
     }
 
     @PostMapping

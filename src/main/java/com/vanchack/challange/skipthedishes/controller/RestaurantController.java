@@ -5,6 +5,8 @@ import com.vanchack.challange.skipthedishes.services.restaurant.RestaurantServic
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/restaurants")
 @RequiredArgsConstructor
@@ -13,8 +15,8 @@ public class RestaurantController {
     private final RestaurantService restaurantService;
 
     @GetMapping
-    public Iterable<Restaurant> allRestaurants() {
-        return restaurantService.findAll();
+    public List<Restaurant> allRestaurants() {
+        return (List<Restaurant>) restaurantService.findAll();
     }
 
     @PostMapping

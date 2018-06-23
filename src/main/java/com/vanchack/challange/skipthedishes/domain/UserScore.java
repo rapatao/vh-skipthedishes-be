@@ -1,5 +1,6 @@
 package com.vanchack.challange.skipthedishes.domain;
 
+import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -7,6 +8,7 @@ import java.time.Instant;
 
 @Entity(name = "user_score")
 @Data
+@Builder
 public class UserScore {
 
     @Id
@@ -24,6 +26,6 @@ public class UserScore {
     private Integer score;
 
     @Column(name = "dateuserscore")
-    private Instant event;
+    private Instant eventDate;
 
 }

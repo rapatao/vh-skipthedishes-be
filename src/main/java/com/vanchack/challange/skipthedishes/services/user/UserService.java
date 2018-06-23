@@ -27,12 +27,12 @@ public class UserService {
         }
 
         user.setDateSign(Instant.now());
-        user.setUserid(null);
+        user.setId(null);
         return userRepository.save(user);
     }
 
     public User updateUser(User user) {
-        Optional<User> byId = userRepository.findById(user.getUserid());
+        Optional<User> byId = userRepository.findById(user.getId());
         if (!byId.isPresent()) {
             throw new UserNotExists();
         }

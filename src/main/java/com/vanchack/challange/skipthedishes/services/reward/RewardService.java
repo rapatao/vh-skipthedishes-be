@@ -25,20 +25,22 @@ public class RewardService {
         return userScoreRepository.findAllByUserIdAndRestaurantId(userId, restaurantId);
     }
 
-    public UserScore addUserScore(final UserScore userScore) {
-        final Optional<User> user = userService.byId(userScore.getUserId());
+    public UserScore addUserScore(final Integer userId, final Integer restaurantId) {
+        final Optional<User> user = userService.byId(userId);
         if (!user.isPresent()) {
             throw new UserNotExists();
         }
 
-        final Optional<Restaurant> restaurant = restaurantService.byId(userScore.getRestaurantId());
+        final Optional<Restaurant> restaurant = restaurantService.byId(restaurantId);
         if (!restaurant.isPresent()) {
             throw new RestaurantNotExists();
         }
 
-        userScore.setEvent(Instant.now());
-
-        return userScoreRepository.save(userScore);
+        return userScoreRepository.save(UserScore.builder()
+                .eventDate(Instant.now())
+                .userId(userId)
+                .restaurantId(restaurantId)
+                .build());
     }
 
 }
