@@ -2,6 +2,7 @@ package com.vanchack.challange.skipthedishes.services.user;
 
 import com.vanchack.challange.skipthedishes.domain.User;
 import com.vanchack.challange.skipthedishes.services.user.exception.UserAlreadyExists;
+import com.vanchack.challange.skipthedishes.services.user.exception.UserNotExists;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
