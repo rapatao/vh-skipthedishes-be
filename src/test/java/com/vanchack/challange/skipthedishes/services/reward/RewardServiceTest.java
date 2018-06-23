@@ -23,6 +23,8 @@ public class RewardServiceTest {
     private UserService userService;
     private RestaurantService restaurantService;
     private UserScoreRepository userScoreRepository;
+    private UserSummarizedScoreRepository userSummarizedScoreRepository;
+
     private RewardService rewardService;
 
     @Before
@@ -30,7 +32,9 @@ public class RewardServiceTest {
         userService = mock(UserService.class);
         restaurantService = mock(RestaurantService.class);
         userScoreRepository = mock(UserScoreRepository.class);
-        rewardService = spy(new RewardService(userService, restaurantService, userScoreRepository));
+        userSummarizedScoreRepository = mock(UserSummarizedScoreRepository.class);
+        rewardService = spy(new RewardService(
+                userService, restaurantService, userScoreRepository, userSummarizedScoreRepository));
     }
 
     @Test(expected = UserNotExistsException.class)
