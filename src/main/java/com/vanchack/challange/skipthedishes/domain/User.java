@@ -2,10 +2,7 @@ package com.vanchack.challange.skipthedishes.domain;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.Instant;
 
 @Entity
@@ -14,9 +11,16 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "userid")
     private Integer userid;
+
+    @Column(name = "username")
     private String username;
+
+    @Column(name = "usermail")
     private String usermail;
+
+    @Column(name = "dateSign")
     private Instant dateSign;
 
 }
