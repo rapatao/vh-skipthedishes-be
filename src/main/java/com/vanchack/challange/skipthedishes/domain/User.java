@@ -1,5 +1,6 @@
 package com.vanchack.challange.skipthedishes.domain;
 
+import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -7,6 +8,7 @@ import java.time.Instant;
 
 @Entity
 @Data
+@Builder
 public class User {
 
     @Id
