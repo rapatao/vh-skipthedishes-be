@@ -31,6 +31,10 @@ mvn -Dspring.profiles.active=local spring-boot:run
 ## Heroku
 The auto deployment is enabled using the *master* git branch
 
+```
+https://vh-skipthedishes-backend.herokuapp.com/
+```
+
 
 # API Documentation
 
