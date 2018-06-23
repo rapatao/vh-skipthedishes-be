@@ -2,7 +2,7 @@ package com.vanchack.challange.skipthedishes.services.restaurant;
 
 import com.vanchack.challange.skipthedishes.domain.Restaurant;
 import com.vanchack.challange.skipthedishes.services.restaurant.exception.DuplicatedRestaurantDocumentException;
-import com.vanchack.challange.skipthedishes.services.restaurant.exception.RestaurantNotExists;
+import com.vanchack.challange.skipthedishes.services.restaurant.exception.RestaurantNotExistsException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -35,7 +35,7 @@ public class RestaurantService {
     public Restaurant update(Restaurant restaurant) {
         Optional<Restaurant> byId = restaurantRepository.findById(restaurant.getId());
         if (!byId.isPresent()) {
-            throw new RestaurantNotExists();
+            throw new RestaurantNotExistsException();
         }
         if (byId.get().getDocument().equalsIgnoreCase(restaurant.getDocument())
                 && !byId.get().getId().equals(restaurant.getId())) {

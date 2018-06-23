@@ -4,9 +4,9 @@ import com.vanchack.challange.skipthedishes.domain.Restaurant;
 import com.vanchack.challange.skipthedishes.domain.User;
 import com.vanchack.challange.skipthedishes.domain.UserScore;
 import com.vanchack.challange.skipthedishes.services.restaurant.RestaurantService;
-import com.vanchack.challange.skipthedishes.services.restaurant.exception.RestaurantNotExists;
+import com.vanchack.challange.skipthedishes.services.restaurant.exception.RestaurantNotExistsException;
 import com.vanchack.challange.skipthedishes.services.user.UserService;
-import com.vanchack.challange.skipthedishes.services.user.exception.UserNotExists;
+import com.vanchack.challange.skipthedishes.services.user.exception.UserNotExistsException;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -33,7 +33,7 @@ public class RewardServiceTest {
         rewardService = spy(new RewardService(userService, restaurantService, userScoreRepository));
     }
 
-    @Test(expected = UserNotExists.class)
+    @Test(expected = UserNotExistsException.class)
     public void shouldFailWhenUserNotExists() {
         when(userService.byId(anyInt()))
                 .thenReturn(Optional.empty());
@@ -41,7 +41,7 @@ public class RewardServiceTest {
         rewardService.addUserScore(1, 1);
     }
 
-    @Test(expected = RestaurantNotExists.class)
+    @Test(expected = RestaurantNotExistsException.class)
     public void shouldFailWhenRestaurantNotExists() {
         when(userService.byId(anyInt()))
                 .thenReturn(Optional.of(User.builder().id(1).build()));

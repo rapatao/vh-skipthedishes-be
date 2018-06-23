@@ -3,6 +3,7 @@ package com.vanchack.challange.skipthedishes.controller;
 import com.vanchack.challange.skipthedishes.domain.UserScore;
 import com.vanchack.challange.skipthedishes.services.reward.RewardService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,6 +23,12 @@ public class RewardController {
     @PostMapping
     public UserScore addScore(@RequestParam Integer userId, @RequestParam Integer restaurantId) {
         return rewardService.addUserScore(userId, restaurantId);
+    }
+
+    @DeleteMapping
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void withdraw(@RequestParam Integer userId, @RequestParam Integer restaurantId, @RequestParam Integer score) {
+        rewardService.withdrawScore(userId, restaurantId, score);
     }
 
 }

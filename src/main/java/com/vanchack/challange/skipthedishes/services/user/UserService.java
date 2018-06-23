@@ -1,8 +1,8 @@
 package com.vanchack.challange.skipthedishes.services.user;
 
 import com.vanchack.challange.skipthedishes.domain.User;
-import com.vanchack.challange.skipthedishes.services.user.exception.UserAlreadyExists;
-import com.vanchack.challange.skipthedishes.services.user.exception.UserNotExists;
+import com.vanchack.challange.skipthedishes.services.user.exception.UserAlreadyExistsException;
+import com.vanchack.challange.skipthedishes.services.user.exception.UserNotExistsException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +23,7 @@ public class UserService {
         Optional<User> byId = userRepository.findUserByUsername(user.getUsername());
 
         if (byId.isPresent()) {
-            throw new UserAlreadyExists();
+            throw new UserAlreadyExistsException();
         }
 
         user.setDateSign(Instant.now());
@@ -34,7 +34,7 @@ public class UserService {
     public User updateUser(User user) {
         Optional<User> byId = userRepository.findById(user.getId());
         if (!byId.isPresent()) {
-            throw new UserNotExists();
+            throw new UserNotExistsException();
         }
 
         user.setDateSign(byId.get().getDateSign());
