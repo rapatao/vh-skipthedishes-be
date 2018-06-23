@@ -6,6 +6,7 @@ import com.vanchack.challange.skipthedishes.services.user.exception.UserNotExist
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.util.Optional;
 
 @Service
@@ -25,6 +26,7 @@ public class UserService {
             throw new UserAlreadyExists();
         }
 
+        user.setDateSign(Instant.now());
         user.setUserid(null);
         return userRepository.save(user);
     }
@@ -34,6 +36,8 @@ public class UserService {
         if (!byId.isPresent()) {
             throw new UserNotExists();
         }
+
+        user.setDateSign(byId.get().getDateSign());
 
         return userRepository.save(user);
     }
