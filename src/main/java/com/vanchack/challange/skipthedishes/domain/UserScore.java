@@ -20,7 +20,7 @@ public class UserScore {
     @Column(name = "restaurantid")
     private Integer restaurantId;
 
-    @Column(name = "score")
+    @Column(name = "userscore")
     private Integer score;
 
     @Column(name = "dateuserscore")
