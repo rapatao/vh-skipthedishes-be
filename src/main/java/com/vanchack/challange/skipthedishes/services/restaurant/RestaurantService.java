@@ -41,4 +41,8 @@ public class RestaurantService {
 
         return restaurantRepository.save(restaurant);
     }
+
+    public Optional<Restaurant> byId(Integer restaurantId) {
+        return restaurantRepository.findById(restaurantId);
+    }
 }
