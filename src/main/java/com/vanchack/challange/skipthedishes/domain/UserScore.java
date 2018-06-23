@@ -23,7 +23,7 @@ public class UserScore {
     @Column(name = "score")
     private Integer score;
 
-    @Column(name = "event")
+    @Column(name = "dateuserscore")
     private Instant event;
 
 }
